@@ -237,8 +237,8 @@ root.geometry("1280x740")
 root.title('Car Scanner')
 
 # Add image file
-# bg = PhotoImage(file="test2.png")
-bg = PhotoImage(file="unnamed.png")
+bg = PhotoImage(file="bg.png")
+
 # Create Canvas
 canvas1 = Canvas(root, width=510,
                  height=400)
