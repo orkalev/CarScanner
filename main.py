@@ -146,7 +146,7 @@ def importVideo():
         ret, frame = video.read()
         if ret == True:
             originalImage, licenseNum = detect_plate(frame)
-            print(licenseNum)
+            #print(licenseNum)
             cv2.putText(originalImage, 'Press \'Q\' to exit !',(50, 50),cv2.FONT_HERSHEY_SIMPLEX,1,(0, 0, 255), 2)
             cv2.imshow('Frame', originalImage)
             # Press Q on keyboard to  exit
@@ -184,7 +184,8 @@ def importImage():
         res = r.json()
         record1 = res['result']['records']
         if len(record1) == 0:
-            canvas1.create_text(350, 230, text='The car is not at the data base' ,fill="white",font=('Andale Mono', 20), anchor="w", tag="CarInfo")
+            displayText = 'Car number ' + licenseNum + ' is not in the data set'
+            canvas1.create_text(350, 230, text=displayText ,fill="white",font=('Andale Mono', 20), anchor="w", tag="CarInfo")
         else:
             record = record1[0]
             mispar_rechev = record["mispar_rechev"]
