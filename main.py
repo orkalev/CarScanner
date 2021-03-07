@@ -183,8 +183,11 @@ def importImage():
         r = requests.get('https://data.gov.il/api/3/action/datastore_search', params=payload)
         res = r.json()
         record1 = res['result']['records']
-        if len(record1) == 0:
-            displayText = 'Car number ' + licenseNum + ' is not in the data set'
+        if len(record1) == 0 or len(licenseNum) == 0:
+            if (len(licenseNum) == 7 or len(licenseNum) == 8):
+                displayText = 'Car number ' + licenseNum + ' is not in the dataset'
+            else:
+                displayText = 'Could not detect a license plate'
             canvas1.create_text(350, 230, text=displayText ,fill="white",font=('Andale Mono', 20), anchor="w", tag="CarInfo")
         else:
             record = record1[0]
@@ -251,7 +254,6 @@ canvas1.create_image(0, 0, image=bg,
                      anchor="nw")
 
 # Add Text
-# canvas1.create_text(320, 30, text="Welcome to the car scanner",fill="white", font=('c', 18, 'bold'))
 font.families()
 # Add the field text
 canvas1.create_text(50, 200, text="Car Number:",fill="white",font=('Andale Mono', 15), anchor="w")
@@ -267,7 +269,7 @@ canvas1.create_text(50, 470, text="Color:",fill="white",font=('Andale Mono', 15)
 canvas1.create_text(50, 500, text="Fuel type:",fill="white",font=('Andale Mono', 15), anchor="w")
 canvas1.create_text(50, 530, text="Trade alias:",fill="white",font=('Andale Mono', 15), anchor="w")
 
-# Create Buttonsv
+# Create Button
 importImagePhoto = PhotoImage(file = "importImage.png")
 importVideoPhoto = PhotoImage(file = "ImportVideo.png")
 exitPhoto = PhotoImage(file = "Exit.png")
