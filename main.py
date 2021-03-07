@@ -172,7 +172,7 @@ def importImage():
         cv2.destroyWindow("The car before detection")
 
         detection, licenseNum = detect_plate(image)
-        print(licenseNum)
+        # print(licenseNum)
 
         cv2.imshow("The car after detection", detection)
         cv2.waitKey(0)
